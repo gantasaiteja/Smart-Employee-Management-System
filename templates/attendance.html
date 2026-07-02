@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h3>My Attendance</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% if attendances %}
+
+                        {% for attendance in attendances %}
+
+                        <tr>
+
+                            <td>{{ attendance.date }}</td>
+
+                            <td>
+
+                                {% if attendance.status == "Present" %}
+
+                                    <span class="badge bg-success">Present</span>
+
+                                {% elif attendance.status == "Absent" %}
+
+                                    <span class="badge bg-danger">Absent</span>
+
+                                {% else %}
+
+                                    <span class="badge bg-warning text-dark">{{ attendance.status }}</span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="2" class="text-center">
+
+                                No Attendance Records Found
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Apply Leave{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Apply Leave</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/apply-leave" method="POST">
+
+                <div class="mb-3">
+
+                    <label>From Date</label>
+
+                    <input
+                        type="date"
+                        name="from_date"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>To Date</label>
+
+                    <input
+                        type="date"
+                        name="to_date"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Reason</label>
+
+                    <textarea
+                        name="reason"
+                        class="form-control"
+                        rows="5"
+                        required></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Apply Leave
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

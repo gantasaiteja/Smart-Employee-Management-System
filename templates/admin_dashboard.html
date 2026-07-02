@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-2 sidebar">
+
+            <h3 class="text-center mt-4">ADMIN</h3>
+
+            <hr>
+
+            <a href="/admin-dashboard">🏠 Dashboard</a>
+
+           <a href="/create-employee">➕ Create Employee</a>
+
+<a href="/employee-list">👥 Employee List</a>
+
+<a href="/admin-attendance">📅 Daily Attendance</a>
+
+<a href="/leave-requests">📝 Leave Requests</a>
+
+<a href="/change-password">🔒 Change Password</a>
+
+<a href="/logout">🚪 Logout</a>
+
+        </div>
+
+        <div class="col-md-10 content">
+
+            <h2>Admin Dashboard</h2>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-3">
+
+                    <div class="card p-4">
+
+                        <h5>Total Employees</h5>
+
+                        <h2>{{ total_employees }}</h2>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="card p-4">
+
+                        <h5>Present Today</h5>
+
+                        <h2>{{ present_today }}</h2>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="card p-4">
+
+                        <h5>Pending Leaves</h5>
+
+                        <h2>{{ pending_leaves }}</h2>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="card p-4">
+
+                        <h5>Approved Leaves</h5>
+
+                        <h2>{{ approved_leaves }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

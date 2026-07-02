@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Leave Requests{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Employee Leave Requests</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Employee ID</th>
+
+                        <th>From Date</th>
+
+                        <th>To Date</th>
+
+                        <th>Reason</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for leave in leaves %}
+
+                    <tr>
+
+                        <td>{{ leave.employee_id }}</td>
+
+                        <td>{{ leave.from_date }}</td>
+
+                        <td>{{ leave.to_date }}</td>
+
+                        <td>{{ leave.reason }}</td>
+
+                        <td>
+
+                            {% if leave.status == "Pending" %}
+
+                                <span class="badge bg-warning text-dark">Pending</span>
+
+                            {% elif leave.status == "Approved" %}
+
+                                <span class="badge bg-success">Approved</span>
+
+                            {% else %}
+
+                                <span class="badge bg-danger">Rejected</span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if leave.status == "Pending" %}
+
+                            <a href="/approve-leave/{{ leave.id }}" class="btn btn-success btn-sm">
+
+                                Approve
+
+                            </a>
+
+                            <a href="/reject-leave/{{ leave.id }}" class="btn btn-danger btn-sm">
+
+                                Reject
+
+                            </a>
+
+                            {% else %}
+
+                            --
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

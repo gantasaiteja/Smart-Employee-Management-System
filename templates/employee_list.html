@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Employee List{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Employee List</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Employee ID</th>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Department</th>
+
+                        <th>Profile</th>
+
+<th>Password</th>
+
+<th>Login</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for employee in employees %}
+
+                    <tr>
+
+                        <td>{{ employee.employee_id }}</td>
+
+                        <td>{{ employee.name }}</td>
+
+                        <td>{{ employee.email }}</td>
+
+                        <td>{{ employee.department }}</td>
+
+                       <td>
+
+    <a href="/view-employee/{{ employee.id }}" class="btn btn-info btn-sm">
+
+        View Profile
+
+    </a>
+
+</td>
+
+<td>
+
+    <a href="/reset-password/{{ employee.id }}" class="btn btn-warning btn-sm">
+
+        Reset Password
+
+    </a>
+
+</td>
+
+<td>
+
+    <a href="/login-as-employee/{{ employee.id }}" class="btn btn-secondary btn-sm">
+
+        Login
+
+    </a>
+
+</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

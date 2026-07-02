@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Daily Attendance{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Daily Attendance</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST" action="/admin-attendance">
+
+                <table class="table table-bordered">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Employee ID</th>
+
+                            <th>Name</th>
+
+                            <th>Department</th>
+
+                           <th>Today's Attendance</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for employee in employees %}
+
+                        <tr>
+
+                            <td>{{ employee.employee_id }}</td>
+
+                            <td>{{ employee.name }}</td>
+
+                            <td>{{ employee.department }}</td>
+
+                            <td>
+
+                                <select
+                                    name="status_{{ employee.employee_id }}"
+                                    class="form-select">
+
+                                    <option value="Present">Present</option>
+
+                                    <option value="Absent">Absent</option>
+
+                                    <option value="Leave">Leave</option>
+
+                                </select>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                <button
+    type="submit"
+    class="btn btn-success">
+
+    Save Today's Attendance
+
+</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-2 sidebar">
+
+            <h3 class="text-center mt-4">EMPLOYEE</h3>
+
+            <hr>
+
+            <a href="/employee-dashboard">🏠 Dashboard</a>
+
+            <a href="/profile">👤 My Profile</a>
+
+            <a href="/attendance">📅 Attendance</a>
+
+            <a href="/apply-leave">📝 Apply Leave</a>
+
+            <a href="/leave-history">📜 Leave History</a>
+
+            <a href="/change-password">🔒 Change Password</a>
+
+            <a href="/logout">🚪 Logout</a>
+
+        </div>
+
+        <div class="col-md-10 content">
+
+           <h2>Employee Dashboard</h2>
+
+{% if session.get("admin_id") %}
+
+<div class="alert alert-danger">
+
+You are viewing this account as <b>Admin</b>.
+
+</div>
+
+{% endif %}
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="card p-4">
+<h5>Attendance</h5>
+
+<a href="/attendance" class="btn btn-primary mt-2">
+
+View Attendance
+
+</a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card p-4">
+
+                        <h5>Pending Leaves</h5>
+
+                        <h2>{{ pending_count|default(0) }}</h2>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card p-4">
+
+                        <h5>Approved Leaves</h5>
+
+                        <h2>{{ approved_count|default(0) }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Leave History{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h3>Leave History</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>From Date</th>
+
+                        <th>To Date</th>
+
+                        <th>Reason</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% if leaves %}
+
+                        {% for leave in leaves %}
+
+                        <tr>
+
+                            <td>{{ leave.from_date }}</td>
+
+                            <td>{{ leave.to_date }}</td>
+
+                            <td>{{ leave.reason }}</td>
+
+                            <td>
+
+                                {% if leave.status == "Pending" %}
+
+                                    <span class="badge bg-warning text-dark">Pending</span>
+
+                                {% elif leave.status == "Approved" %}
+
+                                    <span class="badge bg-success">Approved</span>
+
+                                {% else %}
+
+                                    <span class="badge bg-danger">Rejected</span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="4" class="text-center">
+
+                                No Leave Records Found
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

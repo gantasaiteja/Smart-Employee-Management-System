@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Details{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Employee Details</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Employee ID</th>
+                    <td>{{ employee.employee_id }}</td>
+                </tr>
+
+                <tr>
+                    <th>Name</th>
+                    <td>{{ employee.name }}</td>
+                </tr>
+
+                <tr>
+                    <th>Email</th>
+                    <td>{{ employee.email }}</td>
+                </tr>
+
+                <tr>
+                    <th>Department</th>
+                    <td>{{ employee.department }}</td>
+                </tr>
+
+            </table>
+
+            <hr>
+
+            <h4>Attendance History</h4>
+
+            <table class="table table-bordered">
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+                {% for a in attendance %}
+
+                <tr>
+
+                    <td>{{ a.date }}</td>
+
+                   <td>
+
+{% if a.status=="Present" %}
+
+<span class="badge bg-success">Present</span>
+
+{% elif a.status=="Absent" %}
+
+<span class="badge bg-danger">Absent</span>
+
+{% else %}
+
+<span class="badge bg-warning text-dark">Leave</span>
+
+{% endif %}
+
+</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <hr>
+
+            <h4>Leave Request History</h4>
+
+            <table class="table table-bordered">
+
+                <tr>
+
+                    <th>From</th>
+
+                    <th>To</th>
+
+                    <th>Reason</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+                {% for l in leaves %}
+
+                <tr>
+
+                    <td>{{ l.from_date }}</td>
+
+                    <td>{{ l.to_date }}</td>
+
+                    <td>{{ l.reason }}</td>
+
+                   <td>
+
+{% if l.status=="Approved" %}
+
+<span class="badge bg-success">Approved</span>
+
+{% elif l.status=="Rejected" %}
+
+<span class="badge bg-danger">Rejected</span>
+
+{% else %}
+
+<span class="badge bg-warning text-dark">Pending</span>
+
+{% endif %}
+
+</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

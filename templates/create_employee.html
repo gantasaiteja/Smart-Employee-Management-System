@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Create Employee{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>Create Employee</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/create-employee" method="POST">
+
+                <div class="mb-3">
+
+                    <label>Employee Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Department</label>
+
+                    <input
+                        type="text"
+                        name="department"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+
+                    Create Employee
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
