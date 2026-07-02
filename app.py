@@ -279,21 +279,21 @@ def approve_leave(leave_id):
     leave = LeaveRequest.query.get_or_404(leave_id)
 
     leave.status = "Approved"
-
     db.session.commit()
 
     employee = User.query.filter_by(
         employee_id=leave.employee_id
     ).first()
 
-    msg = Message(
-    subject="Leave Request Approved",
-    sender=app.config["MAIL_DEFAULT_SENDER"],
-    recipients=[employee.email]
-)
-    
+    if employee and employee.email:
 
-    msg.body = f"""
+        msg = Message(
+            subject="Leave Request Approved",
+            sender=app.config["MAIL_DEFAULT_SENDER"],
+            recipients=[employee.email]
+        )
+
+        msg.body = f"""
 Hello {employee.name},
 
 Your leave request has been APPROVED.
@@ -307,12 +307,13 @@ Regards,
 HR Department
 """
 
-    print(employee.email)
-
-    mail.send(msg)
+        try:
+            mail.send(msg)
+            print("Mail Sent Successfully")
+        except Exception as e:
+            print("Mail Error:", e)
 
     flash("Leave Approved Successfully")
-
     return redirect(url_for("leave_requests"))
 # -----------------------------
 # REJECT LEAVE
